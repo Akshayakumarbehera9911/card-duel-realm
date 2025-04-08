@@ -2,11 +2,12 @@
 # Exit on error
 set -o errexit
 
-# Install Python dependencies
+#!/bin/bash
+# Fix for werkzeug.urls issue
 pip install -r requirements.txt
+pip install werkzeug==2.0.3
 
 # Run seed script to initialize the database
 python seed_db.py
 
 # Start the application
-gunicorn app:app
