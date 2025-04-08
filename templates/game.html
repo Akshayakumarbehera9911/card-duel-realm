@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}Card Duel{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="game-header">
+        <div class="player-info">
+            <h3 id="player1NameDisplay">{{ player1_name }}</h3>
+            <div class="score" id="player1Score">0</div>
+        </div>
+        
+        <div class="round-info">
+            <span id="roundCounter">Round 1</span> of <span>{{ max_rounds }}</span>
+        </div>
+        
+        <div class="player-info">
+            <h3 id="player2NameDisplay">{{ player2_name }}</h3>
+            <div class="score" id="player2Score">0</div>
+        </div>
+    </div>
+    
+    <div class="game-status" id="gameStatus">
+        Cards are being drawn... Select an attribute to compare.
+    </div>
+    
+    <div class="battle-area">
+        <!-- Player 1 card -->
+        <div class="player-card">
+            <div id="player1Card" class="card-container">
+                <!-- Card will be rendered by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- VS Badge -->
+        <div class="vs-badge">VS</div>
+        
+        <!-- Player 2 card -->
+        <div class="player-card">
+            <div id="player2Card" class="card-container">
+                <!-- Card will be rendered by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="next-round" style="text-align: center; margin-top: 20px;">
+        <button id="nextRoundBtn" class="btn btn-lg" disabled>Next Round</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/game.js"></script>
+{% endblock %}

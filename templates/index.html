@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}Card Duel Realm - Anime Card Battle Game{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div style="text-align: center; margin-bottom: 40px;">
+        <h1 class="game-title">Card Duel Realm</h1>
+        <p class="game-subtitle">An Anime-themed Card Battle Game</p>
+    </div>
+    
+    <div style="display: flex; justify-content: center; margin-top: 50px;">
+        <div style="max-width: 500px; width: 100%; background-color: var(--secondary-bg); padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+            <h2 style="text-align: center; margin-bottom: 30px;">Enter Player Names</h2>
+            
+            <form action="/start_game" method="post" class="player-form">
+                <div style="margin-bottom: 20px;">
+                    <label for="player1_name" style="display: block; margin-bottom: 10px; font-weight: bold;">Player 1:</label>
+                    <input type="text" id="player1_name" name="player1_name" placeholder="Enter name" class="form-control" required>
+                </div>
+                
+                <div style="margin-bottom: 30px;">
+                    <label for="player2_name" style="display: block; margin-bottom: 10px; font-weight: bold;">Player 2:</label>
+                    <input type="text" id="player2_name" name="player2_name" placeholder="Enter name" class="form-control" required>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button type="submit" class="btn" style="width: 100%; padding: 12px;">Start Game</button>
+                </div>
+            </form>
+            
+            <div style="margin-top: 20px; text-align: center;">
+                <a href="/cards" style="color: var(--accent-color); text-decoration: none;">View Card Collection</a>
+            </div>
+        </div>
+    </div>
+    
+    <div style="margin-top: 60px; text-align: center;">
+        <h2>How to Play</h2>
+        <div style="max-width: 700px; margin: 0 auto; text-align: left; line-height: 1.6;">
+            <p>1. Each player starts with a deck of 50 cards.</p>
+            <p>2. Players draw one card each round.</p>
+            <p>3. Players take turns choosing which attribute to compare (HP, Attack, Defense, Speed, or Intelligence).</p>
+            <p>4. The player with the higher value wins the round and gains a point.</p>
+            <p>5. Play continues for 50 rounds, and the player with more points at the end wins.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

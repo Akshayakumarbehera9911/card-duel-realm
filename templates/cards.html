@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% block title %}Card Collection{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Card Collection</h1>
+    <p>Browse all available character cards in the game</p>
+    
+    <div class="filter-buttons" style="margin-bottom: 20px; text-align: center;">
+        <button class="btn btn-select selected" data-filter="all">All</button>
+        <button class="btn btn-select" data-filter="S">S Rank</button>
+        <button class="btn btn-select" data-filter="A">A Rank</button>
+        <button class="btn btn-select" data-filter="B">B Rank</button>
+        <button class="btn btn-select" data-filter="C">C Rank</button>
+    </div>
+    
+    <div class="cards-grid">
+        {% for card in cards %}
+        <div class="card-container" data-rank="{{ card.rank }}">
+            <div class="card flipped">
+                <div class="card-back">
+                    <img src="/static/images/card_back.svg" alt="Card back" width="100%" height="100%">
+                </div>
+                <div class="card-front">
+                    <div class="card-header">
+                        <div class="card-name">{{ card.name }}</div>
+                        <span class="card-type">{{ card.type }}</span>
+                    </div>
+                    <div class="card-image">
+                        <img src="/static/images/placeholder_{{ card.id }}.jpg" alt="{{ card.name }}">
+                    </div>
+                    <div class="card-attributes">
+                        <div class="attribute">
+                            <span>HP</span>
+                            <span>{{ card.hp }}</span>
+                        </div>
+                        <div class="attribute">
+                            <span>Attack</span>
+                            <span>{{ card.attack }}</span>
+                        </div>
+                        <div class="attribute">
+                            <span>Defense</span>
+                            <span>{{ card.defense }}</span>
+                        </div>
+                        <div class="attribute">
+                            <span>Speed</span>
+                            <span>{{ card.speed }}</span>
+                        </div>
+                        <div class="attribute">
+                            <span>Intelligence</span>
+                            <span>{{ card.intelligence }}</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-rank">Rank {{ card.rank }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="/" class="btn">Back to Home</a>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterButtons = document.querySelectorAll('.filter-buttons .btn');
+        const cards = document.querySelectorAll('.card-container');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update button styles
+                filterButtons.forEach(btn => btn.classList.remove('selected'));
+                button.classList.add('selected');
+                
+                const filter = button.dataset.filter;
+                
+                // Filter cards
+                cards.forEach(card => {
+                    if (filter === 'all' || card.dataset.rank === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
+{% endblock %}

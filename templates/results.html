@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}Game Results - Card Duel Realm{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="results-container">
+        <h1 style="margin-bottom: 20px;">Game Results</h1>
+        
+        {% if winner %}
+        <div class="winner-info">
+            <strong>{{ winner }}</strong> Wins!
+        </div>
+        {% else %}
+        <div class="winner-info">
+            It's a Tie!
+        </div>
+        {% endif %}
+        
+        <div class="score-details">
+            <div>
+                <h3>{{ player1 }}</h3>
+                <p class="score">{{ player1_score }}</p>
+            </div>
+            <div>
+                <h3>{{ player2 }}</h3>
+                <p class="score">{{ player2_score }}</p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <a href="/" class="btn">Play Again</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
