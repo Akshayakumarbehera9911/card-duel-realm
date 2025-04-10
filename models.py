@@ -1,13 +1,23 @@
 from app import db
 from datetime import datetime
 
+# Current database version - increment this when card data changes
+DATABASE_VERSION = "1.0.2"  # Updated version to force reseeding
+
+class DatabaseVersion(db.Model):
+    __tablename__ = 'database_version'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    version = db.Column(db.String(20), nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
 class Card(db.Model):
     __tablename__ = 'cards'
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     type = db.Column(db.String(50), nullable=False)
-    rank = db.Column(db.String(1), nullable=False, key='`rank`') # SQLAlchemy will handle the backticks for MySQL
+    rank = db.Column(db.String(1), nullable=False)
     hp = db.Column(db.Integer, nullable=False)
     attack = db.Column(db.Integer, nullable=False)
     defense = db.Column(db.Integer, nullable=False)
